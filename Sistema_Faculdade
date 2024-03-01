@@ -1,7 +1,9 @@
 class Pessoa(object):
+    total_pessoas = 0
     def __init__(self, nome="",dependente=0):
         self.nome = nome
         self.dependente = dependente
+        Pessoa.total_pessoas += 1
     def get_nome(self):
         return self.nome
     def set_nome(self, n_nome):
@@ -10,7 +12,6 @@ class Pessoa(object):
         return self.dependente
     def set_dependente(self, n_dependente):
         self.dependente = n_dependente
-
 class Professor(Pessoa):
     def __init__(self, nome = "", dependente = 0, qtd_turma = 1, valor = 100):
         super().__init__(nome,dependente)
@@ -107,3 +108,4 @@ if __name__ == "__main__":
     print(Fun1.salario_total())
     Fun1.mostrar_dados()
     Pr1.mostrar_dados()
+    print("Quantidade de usuários cadastrados no sistema: ", Pessoa.total_pessoas)
