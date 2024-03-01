@@ -1,0 +1,109 @@
+class Pessoa(object):
+    def __init__(self, nome="",dependente=0):
+        self.nome = nome
+        self.dependente = dependente
+    def get_nome(self):
+        return self.nome
+    def set_nome(self, n_nome):
+        self.nome = n_nome
+    def get_dependente(self):
+        return self.dependente
+    def set_dependente(self, n_dependente):
+        self.dependente = n_dependente
+
+class Professor(Pessoa):
+    def __init__(self, nome = "", dependente = 0, qtd_turma = 1, valor = 100):
+        super().__init__(nome,dependente)
+        self.qtd_turma = qtd_turma
+        self.valor = valor
+    def get_qtd_turma(self):
+        return self.qtd_turma
+    def set_qtd_turma(self, n_qtd_turma):
+        if n_qtd_turma < 0:
+            print("Número de turmas deve ser maior que 0 (valor não será alterado)")
+        else:
+            self.qtd_turma = n_qtd_turma
+    def get_valor(self):
+        return self.valor
+    def set_valor(self, n_valor):
+        self.valor = n_valor
+    def rendimento(self):
+        return self.valor * self.qtd_turma
+    def mostrar_dados(self):
+        if Professor:
+            print(f"Nome: {self.get_nome()}")
+            print(f"Dependente: {self.get_dependente()}")
+            print(f"Qtd turma: {self.get_qtd_turma()}")
+            print(f"Valor por turma:", self.get_valor())
+            print(f"Rendimento: {self.rendimento()}")
+            print(f"Salário total: {self.rendimento() + (self.get_dependente()*100)}")
+
+class Funcionário(Pessoa):
+    def __init__(self, nome = "", dependente = 0, salario = 1000):
+        super().__init__(nome,dependente)
+        self.salario = salario
+    def get_salario(self):
+        return self.salario
+    def set_salario(self, n_salario):
+        if n_salario < 1000:
+            print("Salario mínimo é 1000 reais, valor não pode ser menor, salário não alterado")
+        else:
+            self.salario = n_salario
+    def salario_total(self):
+        return self.salario + 100*self.dependente
+    def vale_aliment(self):
+        return self.dependente*400
+    def mostrar_dados(self):
+        if Funcionário:
+            print(f"Nome: {self.get_nome()}")
+            print(f"Dependente: {self.get_dependente()}")
+            print(f"Salário: {self.get_salario()}")
+            print(f"Salário total:", self.salario_total())
+            print(f"Vale_alimentação: {self.vale_aliment()}")
+
+if __name__ == "__main__":
+    Pe1 = Pessoa("Lenda")
+    print(Pe1.get_nome())
+    print(Pe1.get_dependente())
+    Pr1 = Professor("Mc Poze", 10, 8, 1000)
+    print(Pr1.get_nome())
+    Pr1.set_nome("Toguro")
+    print(Pr1.get_nome())
+    print(Pr1.get_dependente())
+    print(Pr1.get_qtd_turma())
+    print(Pr1.get_valor())
+    Pr2 = Professor("Gibele", 100)
+    print(Pr2.get_nome())
+    print(Pr2.get_dependente())
+    print(Pr2.get_qtd_turma())
+    print(Pr2.get_valor())
+    Pr3 = Professor()
+    print(Pr3.get_nome())
+    print(Pr3.get_dependente())
+    print(Pr3.get_qtd_turma())
+    print(Pr3.get_valor())
+    Pr4 = Professor("Obama", qtd_turma= 10)
+    print(Pr4.get_nome())
+    print(Pr4.get_dependente())
+    print(Pr4.get_qtd_turma())
+    print(Pr4.get_valor())
+    Pr1.set_qtd_turma(-1)
+    print(Pr1.get_qtd_turma())
+    print(Pr1.rendimento())
+    Fun1 = Funcionário("Julieta", 2, 1500)
+    Fun2 = Funcionário("Etiene", 4)
+    Fun3 = Funcionário("Romeu")
+    print(Fun1.get_nome())
+    print(Fun1.get_dependente())
+    print(Fun1.get_salario())
+    print(Fun2.get_nome())
+    print(Fun2.get_dependente())
+    print(Fun2.get_salario())
+    print(Fun3.get_nome())
+    print(Fun3.get_dependente())
+    print(Fun3.get_salario())
+    Fun1.set_salario(10)
+    print(Fun1.get_salario())
+    print(Fun1.salario_total())
+    Fun1.mostrar_dados()
+    Pr1.mostrar_dados()
