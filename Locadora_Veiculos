@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 class Carro(ABC):
     preco_base = 100
-    total = 0
+    total = []
     @classmethod
     def __init__(self,modelo):
         self.modelo = modelo
-        Carro.total += 1
+        Carro.total.append(self)
     def get_modelo(self):
         return self.modelo
     def set_modelo(self, novo_modelo):
@@ -31,4 +31,4 @@ if __name__ == '__main__':
     print (e1.get_modelo())
     i1 = Intermediario(15000)
     print (i1.get_modelo())
-    print(e1.total)
+    print("total:", len(Carro.total))
