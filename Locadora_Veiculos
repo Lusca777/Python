@@ -1,0 +1,34 @@
+from abc import ABC, abstractmethod
+class Carro(ABC):
+    preco_base = 100
+    total = 0
+    @classmethod
+    def __init__(self,modelo):
+        self.modelo = modelo
+        Carro.total += 1
+    def get_modelo(self):
+        return self.modelo
+    def set_modelo(self, novo_modelo):
+        self.modelo = novo_modelo
+    @abstractmethod
+    def preco_diaria(self):
+        pass
+class Economico(Carro):
+    def __init__(self,modelo):
+        super().__init__(modelo)
+    def preco_diaria(self):
+        preco_diaria = self.preco_base + 0.05*self.preco_base
+        return self.preco_diaria
+class Intermediario(Carro):
+    def __init__(self,modelo):
+        super().__init__(modelo)
+    def preco_diaria(self):
+        preco_diaria = self.preco_base + 0.10*self.preco_base
+        return preco_diaria
+if __name__ == '__main__':
+    #o_carro = Carro("Corolla")
+    e1 = Economico(10000)
+    print (e1.get_modelo())
+    i1 = Intermediario(15000)
+    print (i1.get_modelo())
+    print(e1.total)
