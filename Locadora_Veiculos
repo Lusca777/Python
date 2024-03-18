@@ -1,34 +1,56 @@
 from abc import ABC, abstractmethod
+
+# Classe base abstrata para representar um carro
 class Carro(ABC):
+    # Preço base comum a todos os carros
     preco_base = 100
+    # Lista para armazenar todas as instâncias de carros criadas
     total = []
+
+    # Método construtor
     @classmethod
-    def __init__(self,modelo):
+    def __init__(self, modelo):
         self.modelo = modelo
+        # Adiciona a instância atual à lista total
         Carro.total.append(self)
+
+    # Método para obter o modelo do carro
     def get_modelo(self):
         return self.modelo
+
+    # Método para definir um novo modelo para o carro
     def set_modelo(self, novo_modelo):
         self.modelo = novo_modelo
+
+    # Método abstrato para calcular o preço diário de aluguel
     @abstractmethod
     def preco_diaria(self):
         pass
+
+# Classe para representar um carro do tipo econômico
 class Economico(Carro):
-    def __init__(self,modelo):
+    def __init__(self, modelo):
         super().__init__(modelo)
+
+    # Implementação do método abstrato para calcular o preço diário de aluguel
     def preco_diaria(self):
-        preco_diaria = self.preco_base + 0.05*self.preco_base
-        return self.preco_diaria
-class Intermediario(Carro):
-    def __init__(self,modelo):
-        super().__init__(modelo)
-    def preco_diaria(self):
-        preco_diaria = self.preco_base + 0.10*self.preco_base
+        preco_diaria = self.preco_base + 0.05 * self.preco_base
         return preco_diaria
+
+# Classe para representar um carro do tipo intermediário
+class Intermediario(Carro):
+    def __init__(self, modelo):
+        super().__init__(modelo)
+
+    # Implementação do método abstrato para calcular o preço diário de aluguel
+    def preco_diaria(self):
+        preco_diaria = self.preco_base + 0.10 * self.preco_base
+        return preco_diaria
+
 if __name__ == '__main__':
-    #o_carro = Carro("Corolla")
-    e1 = Economico(10000)
-    print (e1.get_modelo())
-    i1 = Intermediario(15000)
-    print (i1.get_modelo())
-    print("total:", len(Carro.total))
+    # Criando instâncias de carros e testando funcionalidades
+    e1 = Economico(10000)  # Cria um carro econômico com o modelo 10000
+    print(e1.get_modelo())  # Imprime o modelo do carro econômico
+    i1 = Intermediario(15000)  # Cria um carro intermediário com o modelo 15000
+    print(i1.get_modelo())  # Imprime o modelo do carro intermediário
+    print("total:", len(Carro.total))  # Imprime o total de instâncias de carros criadas
